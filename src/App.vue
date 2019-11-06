@@ -1,29 +1,25 @@
 <template>
-  <div id="app">
-    {{ hello }}
-  </div>
+  <div id="app">{{ hello }}</div>
 </template>
 
 <script>
 export default {
-  name: 'app',
+  name: "app",
   data() {
     return {
-      hello: 'preset value'
-    }
-  }, 
-  created() {
-    import("./helloworld.js").then(module => {
-    let helloworld = module.helloworld;
+      hello: "preset value"
+    };
+  },
+  async created() {
+    let { helloworld } = await import("./helloworld.js");
     this.hello = helloworld.sayHello();
-  });
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
